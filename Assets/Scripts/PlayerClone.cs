@@ -1,32 +1,57 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerClone : MonoBehaviour
 {
-    private Stack<Vector3> actions = new Stack<Vector3>();
+    private Stack<Vector3> actions;
     private Collider2D _currentButtonCollider;
 
     [SerializeField] private Vector3 boxSize;
-    //[SerializeField] private LayerMask buttonLayer;
+    [SerializeField] private Animator _animator;
 
-    public void SetActions(Stack<Vector3> a){
+    // Animation Hashes
+    private static readonly int A_Idle = Animator.StringToHash("Idle");
+    private static readonly int A_Run = Animator.StringToHash("Run");
+    private static readonly int A_Jump = Animator.StringToHash("Jump");
+    private static readonly int A_Fall = Animator.StringToHash("Fall");
+
+    private int _currentState;
+    private Vector3 _previousPosition;
+    private bool _isGrounded = false;
+ 
+    [Header("Ground Check")]
+    [SerializeField] private Transform feetPos;
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.9f, 0.1f);
+    [SerializeField] private LayerMask whatIsGround;
+
+    public void SetActions(Stack<Vector3> a)
+    {
         actions = new Stack<Vector3>(a.Reverse());
     }
 
-    void Update(){
-        if(actions.Count == 0) return;
+    private void Start()
+    { 
+        _previousPosition = transform.position;
+    }
+
+    void Update()
+    {
+        if (actions.Count == 0) return;
 
         //next action from the stack
         Vector3 action = actions.Pop();
 
-
-        transform.position = new Vector3(action.x, action.y, 0);
+        transform.position = new Vector2(action.x, action.y);
+        FlipSprite(action.x - _previousPosition.x);
 
         //Perform action based on the action type
         int actionType = (int)action.z;
 
-        switch(actionType){
+        switch (actionType)
+        {
             case 1:
                 PerformButtonPress();
                 break;
@@ -34,7 +59,48 @@ public class PlayerClone : MonoBehaviour
                 PerformButtonRelease();
                 break;
         }
+
+        CheckGrounded();
+        UpdateAnimations();
+
+        _previousPosition = transform.position;
+
         if (actions.Count == 0) Destroy(gameObject);
+    }
+
+    private void CheckGrounded()
+    {
+        _isGrounded = Physics2D.OverlapBox(feetPos.position, groundCheckSize, 0f, whatIsGround) != null;
+    }
+
+    private void UpdateAnimations()
+    {
+        Vector3 velocity = (transform.position - _previousPosition) / Time.deltaTime;
+
+        int state;
+        if (!_isGrounded)
+        {
+            state = velocity.y > 0 ? A_Jump : A_Fall;
+        }
+        else
+        {
+            //state = _isRunning ? A_Run : A_Idle;
+            state = A_Run;
+        }
+
+        if (state == _currentState) return;
+
+        _animator.CrossFade(state, 0.1f, 0);
+        _currentState = state;
+    }
+
+    private void FlipSprite(float direction)
+    {
+        if (direction == 0) return;
+
+        Vector3 localScale = transform.localScale;
+        localScale.x = direction > 0 ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
+        transform.localScale = localScale;
     }
 
     private void PerformButtonPress()
@@ -43,7 +109,8 @@ public class PlayerClone : MonoBehaviour
 
         //Simulate OnPress
         var button = _currentButtonCollider.GetComponent<Button>();
-        if (button != null) {
+        if (button != null)
+        {
             //Debug.Log("Pressing button");
             button.Press();
         }
@@ -66,7 +133,6 @@ public class PlayerClone : MonoBehaviour
     {
         if (collision.CompareTag("Button"))
         {
-            
             _currentButtonCollider = collision;
         }
     }
@@ -74,12 +140,13 @@ public class PlayerClone : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Button"))
-        { 
+        {
             _currentButtonCollider = null;
         }
     }
 
-    void OnDrawGizmosSelected(){
+    void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, boxSize);
     }

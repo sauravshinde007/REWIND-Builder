@@ -231,6 +231,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSize: {x: 0.75, y: 1.48, z: 1}
+  _animator: {fileID: 7327206394909496691}
+  feetPos: {fileID: 4715716339661227732}
+  groundCheckSize: {x: 0.9, y: 0.1}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &-413433208994761690
 Rigidbody2D:
   serializedVersion: 4
