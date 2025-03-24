@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1710108783227157313}
   - component: {fileID: 795959790895774640}
   - component: {fileID: 5720127329868147986}
+  - component: {fileID: 4397086082377043224}
   m_Layer: 0
   m_Name: FallTrigger
   m_TagString: Untagged
@@ -143,3 +144,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4397086082377043224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015103777103612917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c222f4ef9f1c6b40a9939c668b60406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5720127329868147986}

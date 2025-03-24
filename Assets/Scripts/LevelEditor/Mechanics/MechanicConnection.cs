@@ -10,6 +10,14 @@ public class MechanicConnection : MonoBehaviour
     
     private bool _setupDone = false;
 
+    private void Start()
+    {
+        if (!Globals.Instance.inLevelEditor)
+        {
+            lineRenderer.enabled = false;
+        }
+    }
+
     public void ConnectMechanics()
     {
         var connectionSuccess =

@@ -106,6 +106,73 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3062275416902948633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5423117268301595678}
+  - component: {fileID: 6596220948867193265}
+  m_Layer: 0
+  m_Name: SelectionCollider
+  m_TagString: SelectionCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5423117268301595678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062275416902948633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2667411443171906826}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6596220948867193265
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062275416902948633}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.08, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2894464
 --- !u!1 &8493637332429152214
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +184,7 @@ GameObject:
   - component: {fileID: 2667411443171906826}
   - component: {fileID: 6155352242195272034}
   - component: {fileID: 6499830705891391356}
+  - component: {fileID: 2665982637688208204}
   m_Layer: 0
   m_Name: Key
   m_TagString: Key
@@ -138,6 +206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 42322476961296642}
+  - {fileID: 5423117268301595678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6155352242195272034
@@ -152,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c2a1a2a22bc8515ac04d727a6c47f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorToOpen: {fileID: 0}
   connectionWirePrefab: {fileID: 520763732589447671, guid: a2eb1bbc345f611cd88ad47c8d519c31, type: 3}
+  keyColorIndex: 0
 --- !u!58 &6499830705891391356
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -186,6 +255,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.08, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2894464
+--- !u!114 &2665982637688208204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493637332429152214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c222f4ef9f1c6b40a9939c668b60406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 785398967731416307}

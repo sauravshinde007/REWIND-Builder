@@ -86,6 +86,43 @@ public class LE_Manager : MonoBehaviour {
         // Start in edit mode
         PauseGame();
     }
+    
+    private Mechanic _lastHitObject = null; // Store previously hit object
+
+    private void DetectRaycast(Vector3 mousePosition)
+    {
+        var currentHit = GetMechanicFromRaycast(mousePosition);
+
+        if (currentHit)
+        {
+            if (currentHit == _lastHitObject) return;
+            // Raycast Enter (new object detected)
+            if (_lastHitObject)
+            {
+                OnRaycastExit(_lastHitObject);
+            }
+
+            OnRaycastEnter(currentHit);
+            _lastHitObject = currentHit;
+        }
+        else
+        {
+            // Raycast Exit (no object detected)
+            if (!_lastHitObject) return;
+            OnRaycastExit(_lastHitObject);
+            _lastHitObject = null;
+        }
+    }
+
+    void OnRaycastEnter(Mechanic obj)
+    {
+        obj.actualMechanicGO.GetComponent<OutlineEffect>()?.CreateOutline();
+    }
+
+    void OnRaycastExit(Mechanic obj)
+    {
+        obj.actualMechanicGO.GetComponent<OutlineEffect>()?.RemoveOutline();
+    }
 
     private void Update(){
         if(!SelectMode || !EditMode) return;
@@ -93,6 +130,8 @@ public class LE_Manager : MonoBehaviour {
         var mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
         tempRenderer.SetPosition(1, mousePosition);
+        
+        DetectRaycast(mousePosition);
         
         // Dragging connections
         if(Input.GetMouseButtonDown(1))
@@ -145,7 +184,8 @@ public class LE_Manager : MonoBehaviour {
     {
         var hit = Physics2D.Raycast(mousePosition, Vector2.zero);
         Mechanic mechanic = null;
-        if (hit.collider) mechanic = hit.collider.GetComponentInParent<Mechanic>();
+        if (!hit.collider) return null;
+        mechanic = hit.collider.GetComponentInParent<Mechanic>();
         return mechanic;
     }
     
