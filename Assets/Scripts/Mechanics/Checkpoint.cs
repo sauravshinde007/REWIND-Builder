@@ -87,7 +87,8 @@ public class Checkpoint : MonoBehaviour, IMechanic
         
         otherPoint = point;
         otherPoint.otherPoint = this;
-        otherPoint.isStartPoint = !isStartPoint;
+        isStartPoint = true;
+        otherPoint.isStartPoint = false;
 
         _connected = true;
         otherPoint._connected = true;

@@ -110,6 +110,11 @@ public class LevelManager : MonoBehaviour
         foreach (Transform obj in mechanicsParent)
         {
             var mechanic = obj.GetComponent<Mechanic>();
+            if (mechanic.actualMechanicGO == null)
+            {
+                Destroy(mechanic);
+                continue;
+            }
             var imech = mechanic.actualMechanicGO.GetComponent<IMechanic>();
             if(!mechanic || imech == null) continue;
             

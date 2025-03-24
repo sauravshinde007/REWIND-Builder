@@ -216,10 +216,7 @@ public class LE_Manager : MonoBehaviour {
         foreach (Transform mech in mechanicManager.mechanicsParent)
         {
             var openable = mech.GetComponent<Mechanic>().actualMechanicGO.GetComponent<IOpenable>();
-            if (openable != null)
-            {
-                openable.Setup();
-            }
+            openable?.Setup();
         }
     }
 
