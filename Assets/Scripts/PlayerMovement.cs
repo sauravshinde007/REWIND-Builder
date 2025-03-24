@@ -23,6 +23,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float checkpointDetectionRadius = 2f;
     private Transform _currentCheckpoint;
 
+    [Header("Pull")]
+    [SerializeField] private float _pullDistance = 1f;
+    [SerializeField] LayerMask boxMask;
+    [SerializeField] private string _pushableTag = "Pushable";
+    GameObject box;
+
+    [Header("Animation")]
     [SerializeField] private Animator _animator;
 
     // Animation Hashes
@@ -65,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _jumpButtonPressed = false;
             _jumpBufferCtr = jumpBufferLength;
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.p_jump);
         }
         else { _jumpBufferCtr -= Time.deltaTime; }
 
@@ -91,6 +99,26 @@ public class PlayerMovement : MonoBehaviour
         if (context.canceled) { _jumpButtonReleased = true; }
     }
 
+    private void Pull()
+    {
+        Physics2D.queriesStartInColliders = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right * transform.localScale.x, _pullDistance, boxMask);
+
+        Debug.DrawRay(transform.position, transform.right * transform.localScale.x * _pullDistance, Color.red, 0.1f);
+
+        if (hit.collider != null && hit.collider.CompareTag(_pushableTag) && _interactInput) {
+            box = hit.collider.gameObject;
+            FixedJoint2D joint = box.GetComponent<FixedJoint2D>();
+            joint.enabled = true;
+            joint.connectedBody = this.GetComponent<Rigidbody2D>();
+        }
+        else if (box != null && !_interactInput)
+        {
+            box.GetComponent<FixedJoint2D>().enabled = false;
+        }
+
+    }
+
     private void Update()
     {
         if (!Globals.Instance.playerCanMove)
@@ -103,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         GetInput();
         Flip();
+        Pull();
 
         var state = GetState();
         if (state == _currentState) return;
@@ -209,10 +238,12 @@ public class PlayerMovement : MonoBehaviour
         if (!Globals.Instance.playerCanInteract) return;
         if (context.started)
         {
+            Debug.Log("Interact Pressed");
             _interactInput = true;
         }
         if (context.canceled)
         {
+            Debug.Log("Interact Released");
             _interactInput = false;
         }
     }

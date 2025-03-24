@@ -15,6 +15,7 @@ TagManager:
   - SpawnPoint
   - DeathTrigger
   - CurrentLevel
+  - Pushable
   - SelectionCollider
   layers:
   - Default
