@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 21130923891786701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2770467756649062606}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2041275487, guid: 68acfb34a93684c49a1c702bc0e614b5, type: 3}
+  m_Sprite: {fileID: 81697636, guid: 7420bf7d3c64a9973b352bfaf4d9bcd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   basicConfig:
     uiSprite: {fileID: 81697636, guid: 7420bf7d3c64a9973b352bfaf4d9bcd2, type: 3}
     dimensions: {x: 1, y: 1}
-  actualMechanicGO: {fileID: 6991486925592203350, guid: c1032410255ce6ac287c25530e5d9f28, type: 3}
+  actualMechanicGO: {fileID: 6837987806479003572}
   previewPrefab: {fileID: 21130923891786701}
 --- !u!1001 &4603710155645009890
 PrefabInstance:
@@ -197,6 +197,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1032410255ce6ac287c25530e5d9f28, type: 3}
+--- !u!1 &6837987806479003572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6991486925592203350, guid: c1032410255ce6ac287c25530e5d9f28, type: 3}
+  m_PrefabInstance: {fileID: 4603710155645009890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9005117981190915199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4835514601242770333, guid: c1032410255ce6ac287c25530e5d9f28, type: 3}

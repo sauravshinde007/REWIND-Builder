@@ -134,7 +134,7 @@ MonoBehaviour:
   basicConfig:
     uiSprite: {fileID: 21300000, guid: 84a319756da99aeccbbe671f477f6ff3, type: 3}
     dimensions: {x: 1, y: 1}
-  actualMechanicGO: {fileID: 5510685722810541229, guid: dfcce52e66907be46a34b949e8552589, type: 3}
+  actualMechanicGO: {fileID: 5819546370126803913}
   previewPrefab: {fileID: 1237344525984121409}
 --- !u!1001 &4369131615845432054
 PrefabInstance:
@@ -201,6 +201,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9092c827540eaa04b87f07f83356b8d4, type: 3}
+--- !u!1 &5819546370126803913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7809638237092661567, guid: 9092c827540eaa04b87f07f83356b8d4, type: 3}
+  m_PrefabInstance: {fileID: 4369131615845432054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8413926476270993998 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5216861081460684984, guid: 9092c827540eaa04b87f07f83356b8d4, type: 3}

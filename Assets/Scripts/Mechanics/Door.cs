@@ -92,7 +92,6 @@ public class Door : MonoBehaviour, IOpenable, IMechanic{
         if(showOnOpen) GetComponent<CutsceneTrigger>().CutSceneLogic();
         doorCollider.enabled = false;
         IsOpen = true;
-        SoundManager.PlaySound(SoundType.DOOR);
     }
     public virtual void Close(){ 
         if(showOnClose) GetComponent<CutsceneTrigger>().CutSceneLogic();

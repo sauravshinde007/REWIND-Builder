@@ -65,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
         {
             _jumpButtonPressed = false;
             _jumpBufferCtr = jumpBufferLength;
-            SoundManager.PlaySound(SoundType.JUMP);
         }
         else { _jumpBufferCtr -= Time.deltaTime; }
 
