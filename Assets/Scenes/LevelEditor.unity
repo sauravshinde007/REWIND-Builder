@@ -5527,6 +5527,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc68f766d30cf34a69514efc076de2db, type: 2}
   - {fileID: 11400000, guid: 92c6797ddf08f2f05b7eb69da467b4e8, type: 2}
   - {fileID: 11400000, guid: e6a4e115eab904546970272aabba88fb, type: 2}
+  - {fileID: 11400000, guid: 56bbe2b8c42f06946861c1cb0af6fccb, type: 2}
   viewContentUI: {fileID: 960460042}
   viewButtonPrefab: {fileID: 298743001564944742, guid: 070b018f1a2913726bb5d3e30cc33169, type: 3}
   _disabledLayerColor: {r: 1, g: 1, b: 1, a: 0.39215687}
