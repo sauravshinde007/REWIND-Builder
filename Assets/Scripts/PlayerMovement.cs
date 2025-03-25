@@ -212,17 +212,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void SwitchWithClone()
     {
-        var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-        var hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+        if (hit.collider != null && hit.collider.CompareTag("Clone"))
+        {
+            Transform cloneTransform = hit.collider.transform;
 
-        if (hit.collider == null || !hit.collider.CompareTag("Clone")) return;
-        // Swap positions between the player and the Clone
-        (transform.position, hit.collider.transform.position) = (hit.collider.transform.position, transform.position);
+            // Swap positions
+            Vector3 tempPosition = transform.position;
+            transform.position = cloneTransform.position;
+            cloneTransform.position = tempPosition;
 
-        // Destroy the Clone
-        Destroy(hit.collider.transform.gameObject);
+            // Destroy the Clone
+            Destroy(cloneTransform.gameObject);
+
+            Debug.Log("Switched position with Clone and destroyed it.");
+        }
     }
 
     //New Input System Functions
