@@ -1,5 +1,7 @@
-# REWIND
+# RewindMaker
 A Unity Based Game built on top of our own standalone game `Rewind` which can build levels and maps within our own in-house editor
+
+Inspired from Super Mario Maker
 
 Our Features
 
