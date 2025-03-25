@@ -30,7 +30,7 @@ public class ParallaxController : MonoBehaviour
                     if (layerIndex == 1) continue; // Skip the main player ground (layer 1)
 
                     float parallaxSpeed = baseSpeed + (layerIndex * speedMultiplier);
-                    layer.position += new Vector3(deltaMovement.x * parallaxSpeed, 0, 0);
+                    layer.position += new Vector3(deltaMovement.x * parallaxSpeed, deltaMovement.y * parallaxSpeed, 0);
                 }
             }
 

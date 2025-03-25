@@ -919,6 +919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 220481779}
   - component: {fileID: 220481780}
+  - component: {fileID: 220481781}
   m_Layer: 0
   m_Name: TileLayersParent
   m_TagString: Untagged
@@ -956,6 +957,20 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &220481781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220481778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82bde228c5ef2742829beb3763daa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 0.2
+  speedMultiplier: 0.2
 --- !u!1 &224904210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,6 +1335,11 @@ MonoBehaviour:
   hangTime: 0.1
   jumpBufferLength: 0.1
   checkpointDetectionRadius: 2
+  _pullDistance: 1
+  boxMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _pushableTag: Pushable
   _animator: {fileID: 399755069}
 --- !u!50 &274514765
 Rigidbody2D:
